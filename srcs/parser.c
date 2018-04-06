@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/06 22:50:40 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 01:38:57 by allauren         ###   ########.fr       */
+/*   Created: 2018/04/07 00:40:39 by allauren          #+#    #+#             */
+/*   Updated: 2018/04/07 01:40:10 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int main(int argc, char *argv[])
+int			parseargs(t_env *env, int argc, char **argv)
 {
-	t_env	env;
+	t_data	cnt;
+	t_list	*new;
 
-	if (argc < 2)
-		return (ft_usage());
-	ft_bzero(&env, sizeof(t_env));
-	if (parseargs(&env, argc, argv) == -1)
-		return(ft_print_malloc());
-	print_all_lst(env.lst);
-	del_all_lst(env.lst);
-	return (0);
+	while (++env->i < argc)
+	{
+		ft_bzero(&cnt, sizeof(t_data));
+		cnt.name = ft_strdup(argv[env->i]);
+		if (!(new = ft_lstnew(&cnt, sizeof(t_data))))
+			return (-1);
+		ft_lstadd(&env->lst, new);
+	}
+	while(new->next)
+		new = new->next;
+	((t_data*)(env->lst->content))->start = 1;
+	new->next = env->lst;
+	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:39:52 by gsmith            #+#    #+#              #
-#    Updated: 2018/04/06 22:52:06 by allauren         ###   ########.fr        #
+#    Updated: 2018/04/07 01:38:20 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ OBJS_PATH = objs
 SRCS_PATH = srcs
 DPDS_PATH = depend
 SRCS = $(addprefix $(SRCS_PATH)/, \
+del_lst.c\
+erroc.c\
+parser.c\
 main.c  )
 
 OBJS = $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
@@ -47,7 +50,7 @@ $(NAME):  $(OBJS)
 
 $(OBJS_PATH)/%.o:
 	@printf "[$(NAME)] "$(LBLUE)
-	$(CC) $(FLAG) -I $(HEADER_PATH) -I $(LIBFT_DIR) -o $@ \
+	$(CC) $(FLAG) -I$(HEADER_PATH) -I$(LIBFT_DIR) -o $@ \
 		-c $(@:$(OBJS_PATH)/%.o=$(SRCS_PATH)/%.c)
 	@printf $(NC)
 
