@@ -1,0 +1,39 @@
+On parcours, parse et stocke les argv dans la liste circulaire
+on repurere variable TERM, on la cherche dans la base de donnee de terminfo, on verifie qu'il s'agit bien d'un terminal aussi 
+on recupere termios
+
+///////////////je sais pas si boucle infini commence ici avant la recuperation des signaux/////////////////////////
+
+On recupere les signaux.....(la je sais pas trop notamment sant variable globale..), j'imagine c'est qqch a faire avec --> (man signal) que tu passe ensuite a une foction
+de gestion: de style if SIGABRT on exit 
+
+Apres une petite reflexion je dirais que les signaux doivent etre geres en dehors de boucle....vu que man sigaction nous dit
+
+	"The system defines a set of signals that may be delivered to a process.  Signal delivery resembles the occurrence of a hardware interrupt: the signal is normally blocked from further occurrence, the current process context is saved, and a new one is built.  A process may specify a handler to which a signal is delivered, or specify that a signal is to be ignored.  A process may also specify that a default action is to be taken by the system when a signal occurs.  A signal may also be blocked, in which case its delivery is postponed until it is unblocked.  The action to be taken on delivery is determined at the time of delivery.  Normally, signal handlers execute on the current stack of the process.  This may be changed, on a per-handler basis, so that signals are taken on a special signal stack"
+
+Donc genre dans la boucle infini on pourrait (j'imagine) creer des processus a l'infini et dans tout les cas cela a l'air de fonctionner pour un proccesuus de ton programme 
+et pas on 1 per 1 basis
+
+cela a l'air la partie la plus reloue a gerer
+
+////////////////////////////////////      ou ici    ////////////////////////
+
+du coup on gere les touche de style if int c (qu'on read par 1 octet) == UP_KEY then bouge en haut etc, 
+et puis pour chaque option demande...on chosit les trucs avec espace(SPC_KEY) (j'imagine qu'il faut avoir un espece de flag dans 
+notre liste circulaire de style if selected/if not),
+*/- --> on choisit /dechoisit tout, ah les coluleurs de mariya devient tres handy d'un coup monsiuer sceptique!
+etc...
+
+ici on doit aussi gerer l'affichage en colonnes .....je propose de calculer la taille maximal de terminal possible et de le diviser par nombre d'args
+et ensuite on peut faire % des args sur le nombre des colonnes pour connaitre les lignes. Vu qu'on est dans le boucle infini le redimensionnement
+sera automatiquement gere
+on clean ecran avant d'afficher la liste circulaire (j'imagine ce qu'ils disent ici dans l'intro a termcaps:  il suffit d’interroger la base
+de données avec tgetstr(3) et d’écrire le résultat dans le terminal avec la fonction tputs(3) sert notamment a ca). "tputs(tgetstr("cl", NULL), 1, ????) ou qqch dans le genre je vois pas ce que peut etre 3 argument de tputs (man associe au souci 3 curs_terminfo)
+
+if ENTER_key
+////on break de boucle infini
+
+on reinstaure les parametres de terminal et on imprime ce qui a ete choisit
+on appelle Alexis pour qu'il free le bordel qu'on a aloue. Si ALexis == 1, beh il  free lui-meme.
+
+
