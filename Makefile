@@ -6,13 +6,13 @@
 #    By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:39:52 by gsmith            #+#    #+#              #
-#    Updated: 2018/04/07 01:38:20 by allauren         ###   ########.fr        #
+#    Updated: 2018/04/07 08:22:18 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Ft_select
+NAME = ft_select
 CC = clang
-FLAG = -Wall -Wextra -g3  #-Werror #-fsanitize=address
+FLAG = -Wall  -Wextra -g3  #-Werror #-fsanitize=address
 LIBFT = ft
 LIBFT_DIR = Libft/
 HEADER_PATH = includes
@@ -21,6 +21,8 @@ SRCS_PATH = srcs
 DPDS_PATH = depend
 SRCS = $(addprefix $(SRCS_PATH)/, \
 del_lst.c\
+get_params_term.c\
+signal.c\
 erroc.c\
 parser.c\
 main.c  )
@@ -43,9 +45,8 @@ $(NAME):  $(OBJS)
 	@printf $(NC)"[$(NAME)] "$(YELLOW)"Compiling .o files done.\n"$(NC)
 	make -C $(LIBFT_DIR)
 	@printf $(NC)"[$(NAME)] "$(LBLUE)
-	$(CC) $(FLAG) -I $(HEADER_PATH) -I $(LIBFT_DIR) -o $(NAME) $(OBJS) \
+	$(CC) $(FLAG) -ltermcap -I $(HEADER_PATH) -I $(LIBFT_DIR) -o $(NAME) $(OBJS) \
 		-L./$(LIBFT_DIR) -l$(LIBFT)
-	gcc -g3  Libft/libft.a srcs/*.c  -I includes -I Libft -o $(NAME)
 	@printf $(NC)"[$(NAME)] "$(LGREEN)"$(NAME) ready.\n"$(NC)
 
 $(OBJS_PATH)/%.o:

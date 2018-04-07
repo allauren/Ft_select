@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   get_params_term.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/07 00:40:39 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 05:30:14 by allauren         ###   ########.fr       */
+/*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
+/*   Updated: 2018/04/07 08:22:41 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int			parseargs(t_env *env, int argc, char **argv)
+int		ft_saveparam(int t)
 {
-	t_data	cnt;
-	t_list	*new;
+	static struct termios term;
 
-	while (++env->i < argc)
+	if (t)
 	{
-		ft_bzero(&cnt, sizeof(t_data));
-		cnt.name = ft_strdup(argv[env->i]);
-		if (!(new = ft_lstnew(&cnt, sizeof(t_data))))
-			return (-1);
-		ft_lstadd(&env->lst, new);
+		if (tcgetattr(STDIN_FILENO, &term))
+			return(-1);
 	}
-	while(new->next)
-		new = new->next;
-	((t_data*)(env->lst->content))->start = 1;
-	new->next = env->lst;
-	return (1);
+	else
+	{
+		ft_printf("coucou:)");
+		if (tcsetattr(STDIN_FILENO, TCSANOW, &term))
+			return (-1);
+	}
+	return(0);
 }
