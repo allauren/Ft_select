@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 05:34:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 08:38:03 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 09:22:07 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@
 
 void	exiterror(void)
 {
-	ft_printf("\ncoucou");
 	if (ft_saveparam(0) == -1)
 		ft_printf("error in reinit param shell\n");
-	del_all_lst(get_elems(NULL));
+	del_all_lst(get_elems(NULL)->lst);
 	exit(-1);
 }
 
@@ -46,5 +45,6 @@ void	signals_init(void)
 
 	i = 0;
 	while (++i < 32)
+		if (i != 11)
 		signal(i, handle_sign);
 }

@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 00:56:09 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 08:25:38 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 09:26:13 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		del_all_lst(t_list *lst)
 	if (lst)
 	{
 		data = lst->content;
-		if (lst->next && !((t_data*)(lst->next->content))->start)
+		if (!((t_data*)(lst->next->content))->start)
 			del_all_lst(lst->next);
 		del_lst(lst);
 	}

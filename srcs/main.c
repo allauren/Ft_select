@@ -6,19 +6,22 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:50:40 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 08:20:40 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 10:14:38 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_list		*get_elems(t_list **lst)
+t_env		*get_elems(t_env *env)
 {
-	static t_list **stat = NULL;
+	static t_env *stat = NULL;
 
-	if (lst)
-		stat = lst;
-	return (*stat);
+	if (env)
+	{
+		get_wsize(env);
+		stat = env;
+	}
+		return (stat);
 }
 
 int main(int argc, char *argv[])
@@ -31,12 +34,9 @@ int main(int argc, char *argv[])
 	if (ft_saveparam(1) == -1 || parseargs(&env, argc, argv) == -1)
 		return(ft_print_malloc());
 	signals_init();
-	get_elems(&env.lst);
+	get_elems(&env);
 	print_all_lst(env.lst);
-	del_all_lst(get_elems(NULL));
-	char *str;
-	while (get_next_line(0, &str));
-
+	while (1);
 
 	return (0);
 }

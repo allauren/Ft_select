@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 08:22:41 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 10:06:44 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ int		ft_saveparam(int t)
 	}
 	else
 	{
-		ft_printf("coucou:)");
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &term))
 			return (-1);
 	}
 	return(0);
 }
+
+void		get_wsize(t_env *env)
+{
+	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &env->w))
+		ft_printf("error in winsize\n");
+	  ft_printf ("lines %d\n", env->w.ws_row);
+	     ft_printf ("columns %d\n", env->w.ws_col);
+}
+
