@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 05:34:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 09:22:07 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 13:54:16 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	exiterror(void)
 void	handle_sign(int signal)
 {
 	if (signal == SIGWINCH)
-		ft_printf("je change%d\n",signal);
+	{
+		isvalidsize(get_elems(NULL));
+	}
 	else if (signal == SIGCONT)
 		ft_printf("read %d\n", signal);
 	else if (signal == SIGTSTP)
 		ft_printf("read %d\n", signal);
-	else
+	else if (ft_printf("\n#%d# je suis passe la\n", signal))
 		exiterror();
 }
 

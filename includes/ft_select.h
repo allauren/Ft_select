@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:47:52 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 10:05:39 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/07 12:25:50 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct		s_env
 	t_list			*lst;
 	int				i;
 	char			*name;
+	int				size;
+	int				mlen;
 	struct winsize	w;
 }					t_env;
 
@@ -30,6 +32,7 @@ typedef struct		s_data
 {
 	char	*name;
 	int		start;
+	int		len;
 }					t_data;
 
 /*
@@ -48,6 +51,7 @@ void		signals_init(void);
 t_env		*get_elems(t_env *env);
 int			ft_saveparam(int t);
 void		get_wsize(t_env *env);
+void		isvalidsize(t_env *env);
 	
 
 /*
