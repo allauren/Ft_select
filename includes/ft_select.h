@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:47:52 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 04:52:21 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 06:05:52 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_env
 	int				size;
 	int				mlen;
 	struct winsize	w;
+	int				fd;
 }					t_env;
 
 typedef struct		s_data
@@ -51,6 +52,8 @@ int			initterm(void);
 **  parsing functions
 */
 
+void		set_caps(char *str);
+int			open_tty(t_env *env);
 int			parseargs(t_env *env, int argc, char **argv);
 void		signals_init(void);
 t_env		*get_elems(t_env *env);

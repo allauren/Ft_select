@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 04:52:49 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 06:22:48 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,14 @@ int     voir_touche()
 
 void		get_wsize(t_env *env)
 {
-	char *str;
-	str = tgetstr("cl", NULL);
-	fputs(str, stdout);
 	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &env->w))
 		ft_printf("error in winsize\n");
 	ft_printf("\n avant %d et %d\n", env->mlen, env->size);
 	get_elems(env);
 	if (!isvalidsize(env))
 	{
-	print_all_lst(env->lst);
+	set_caps("cl");
+		print_all_lst(env->lst);
 		voir_touche();
 	}
 }
