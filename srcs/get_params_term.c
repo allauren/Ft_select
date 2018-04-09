@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 06:22:48 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 07:05:56 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int     voir_touche()
 	return (0);
 }
 
-
-
 void		get_wsize(t_env *env)
 {
 	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &env->w))
@@ -74,7 +72,7 @@ void		get_wsize(t_env *env)
 	get_elems(env);
 	if (!isvalidsize(env))
 	{
-	set_caps("cl");
+		set_caps("cl");
 		print_all_lst(env->lst);
 		voir_touche();
 	}
