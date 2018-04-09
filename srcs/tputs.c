@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 05:41:44 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 07:05:31 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 10:02:58 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int			putcharftsel(int c)
 }
 void		set_caps(char *str)
 {
-	tputs(tgoto(tgetstr("cl", NULL), 0, 0), 1, putcharftsel);
+	ft_putstr_fd(tgetstr(str, NULL), get_elems(NULL)->fd);
 }
-void		set_pcaps(char *str, int x. int y)
+void		set_pcaps(char *str, int x, int y)
 {
-	tputs(tgoto(tgetstr("cl", NULL), x, y), 1, putcharftsel);
+	tputs(tgoto(tgetstr(str, NULL), x, y), 1, putcharftsel);
 }
