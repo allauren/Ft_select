@@ -14,6 +14,7 @@ void						quitting_func(void *youzhik)
 {
 	///restorer terminal
 //	free(youzhik) (ou qqch de ce style)
+	printf("coucou je m en vais\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -55,6 +56,6 @@ int 						main()
 {
 	char				*term = "caca";
 
-	raise(SIGQUIT);
 	get_signal((void *)term);
+	raise(SIGQUIT);
 }

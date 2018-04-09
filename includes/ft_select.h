@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:47:52 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 12:25:50 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 04:52:21 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <term.h>
 # include <curses.h>
 # include <sys/ioctl.h>
+# define L_ARROW 68
+# define T_ARROW 65
+# define B_ARROW 66
+# define R_ARROW 67
 
 typedef struct		s_env
 {
@@ -41,6 +45,7 @@ typedef struct		s_data
 
 int		ft_usage(void);
 int		ft_print_malloc(void);
+int			initterm(void);
 
 /*
 **  parsing functions
@@ -51,7 +56,7 @@ void		signals_init(void);
 t_env		*get_elems(t_env *env);
 int			ft_saveparam(int t);
 void		get_wsize(t_env *env);
-void		isvalidsize(t_env *env);
+int		isvalidsize(t_env *env);
 	
 
 /*

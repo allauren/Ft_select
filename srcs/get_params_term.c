@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 13:53:30 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 04:52:49 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,56 @@ int		ft_saveparam(int t)
 	return(0);
 }
 
+int			initterm(void)
+{
+	struct termios term;
+
+	if (tcgetattr(STDIN_FILENO, &term))
+		return (-1);
+	term.c_lflag &= ~(ICANON); // Met le terminal en mode canonique.
+	term.c_lflag &= ~(ECHO); // les touches tapées ne s'inscriront plus dans le terminal
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+	if (tcsetattr(0, TCSADRAIN, &term) == -1)
+		return (-1);
+	return(0);
+}
+
+
+
+int     voir_touche()
+{
+	char     buffer[3];
+
+	while (1)
+	{
+		read(0, buffer, 3);
+		if (buffer[0] == 27)
+			printf("C'est une fleche !\n");
+		else if (buffer[0] == 4)
+		{
+			printf("Ctlr+d, on quitte !\n");
+			return (0);
+		}
+	}
+	return (0);
+}
+
+
+
 void		get_wsize(t_env *env)
 {
+	char *str;
+	str = tgetstr("cl", NULL);
+	fputs(str, stdout);
 	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &env->w))
 		ft_printf("error in winsize\n");
 	ft_printf("\n avant %d et %d\n", env->mlen, env->size);
 	get_elems(env);
-	isvalidsize(env);
-	 ft_printf ("ici lines %d\n", env->w.ws_row);
-	    ft_printf ("ici columns %d\n", env->w.ws_col);
+	if (!isvalidsize(env))
+	{
+	print_all_lst(env->lst);
+		voir_touche();
+	}
 }
 

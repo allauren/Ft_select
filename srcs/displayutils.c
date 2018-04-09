@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 12:03:37 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 13:48:01 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 04:04:47 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 int		divide(int x, int y)
 {
-	return(x / y + 1);
+	return(x / y  +  x % y > 0);
 }
 
-void		isvalidsize(t_env *env)
+int		isvalidsize(t_env *env)
 {
-	ft_printf ("erreur est la columns %d et %d et %d a depasser \n", env->size , divide(env->mlen, env->w.ws_row), env->w.ws_row);
-	if ((env->mlen * divide(env->size, env->w.ws_col)) > env->w.ws_col
-			||((env->size * divide(env->mlen, env->w.ws_row)) > env->w.ws_row && ft_printf("c est lui")))
-		ft_printf ("Je suis trop petit pour afficher ca moi :(\n");
+	ft_printf ("ici lines %d\n", env->w.ws_row);
+	ft_printf ("ici columns %d\n", env->w.ws_col);
+	ft_printf ("columns %d et %d et %d a depasser \n", env->size , divide(env->mlen, env->w.ws_col), env->w.ws_row);
+	ft_printf ("ligne %d et %d et %d a depasser \n", env->mlen , divide(env->size, env->w.ws_row), env->w.ws_col);
+	if ((env->mlen * divide(env->size, env->w.ws_row)) > env->w.ws_col
+			||((env->size * divide(env->mlen, env->w.ws_col)) > env->w.ws_row && ft_printf("c est lui")))
+		return(ft_printf ("Je suis trop petit pour afficher ca moi :(\n"));
+	return (0);
+
 }
+
+
+
+

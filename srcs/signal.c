@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 05:34:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 13:54:16 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 02:35:57 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	handle_sign(int signal)
 {
 	if (signal == SIGWINCH)
 	{
-		isvalidsize(get_elems(NULL));
+		get_wsize(get_elems(NULL));
 	}
 	else if (signal == SIGCONT)
 		ft_printf("read %d\n", signal);

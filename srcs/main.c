@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:50:40 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 13:57:29 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 04:47:23 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ int main(int argc, char *argv[])
 		return (ft_usage());
 	if (ft_saveparam(1) == -1 || parseargs(&env, argc, argv) == -1)
 		return(ft_print_malloc());
+	if (initterm() == -1)
+		return(ft_usage());
 	get_wsize(&env);
 	signals_init();
-	print_all_lst(env.lst);
-	while (1);
-
 	return (0);
 }
