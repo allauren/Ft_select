@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:47:52 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 16:01:18 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 16:53:04 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	exiterror(void);
 /*
 ** free functions
 */
+void	deleleme(t_env *env);
 void		deldata(t_data *data);
 void		del_lst(t_node *lst);
 void		del_all_lst(t_node *lst);

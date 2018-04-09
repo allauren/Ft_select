@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 18:05:35 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:40:38 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,21 @@ void	handle_arrow(int c)
 
 int     voir_touche()
 {
-	char     buffer[17];
+	int     buffer[3];
 	int		ret;
 
-	if (!(ret =  read(0, buffer, 16)))
+	if (!(ret =  read(0, buffer, 4)))
 		return (-1);
 	buffer[ret] = 0;
-		if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 51 && buffer[3] == 126)
-				|| (buffer[0] == 127 && buffer[1] == 0))
-			deleleme(get_elems(NULL));
+	ft_printf("\n%d %d %d %d\n",buffer, buffer[0] + buffer[1] + buffer[2], ret);
+	if (buffer[0] == 27 && buffer[1] == 91)
+		handle_arrow(buffer[2]);
 	else if (buffer[0] == 32 && buffer[1] == 0)
 		isselect(get_elems(NULL));
 	else if (buffer[0] == '\n' && !buffer[1])
 		return(2);
-	else if (buffer[0] == 27 && buffer[1] == 91 && !buffer[2])
-		handle_arrow(buffer[2]);
+	else if ((buffer[0] == 127 /*|| buffer[0] == 8*/) && !buffer[1])
+		deleleme(get_elems(NULL));
 	else if (buffer[0] == 27 && !buffer[1])
 		exiterror();
 	return (0);
@@ -94,11 +94,11 @@ void		get_wsize(t_env *env)
 	//	{
 	while (1)
 	{
-		env = get_elems(NULL);
-			set_caps("cl");
+	env = get_elems(NULL);
+		set_caps("cl");
 		if (!env->lst)
 			return;
-			print_all_lst(env->lst);
+		print_all_lst(env->lst);
 		if (voir_touche() == 2)
 			break;
 	}

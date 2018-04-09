@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:50:40 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 15:50:07 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:48:49 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
 	get_wsize(&env);
 	if (ft_saveparam(0) == -1)
 		return(ft_printf("error in reinit param shell\n") < 0 - 1);
+	if (!env.lst)
+		return(ft_printf("no value available"));
 	isfinish(&env);
 	del_all_lst(env.lst);
 	return (0);

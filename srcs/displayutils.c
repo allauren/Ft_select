@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 12:03:37 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 13:51:40 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 16:42:49 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,3 @@ int		isvalidsize(t_env *env)
 		return(ft_printf ("Je suis trop petit pour afficher ca moi :(\n"));
 	return (0);
 }
-
-
-
-
-

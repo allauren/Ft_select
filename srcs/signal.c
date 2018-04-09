@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 05:34:57 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 15:25:13 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:22:35 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	exiterror(void)
 	if (ft_saveparam(0) == -1)
 		ft_printf("error in reinit param shell\n");
 	del_all_lst(get_elems(NULL)->lst);
+	ft_printf("je suis un signal");
 	exit(-1);
 }
 
