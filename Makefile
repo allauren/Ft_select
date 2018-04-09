@@ -6,7 +6,7 @@
 #    By: gsmith <gsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:39:52 by gsmith            #+#    #+#              #
-#    Updated: 2018/04/09 06:07:07 by allauren         ###   ########.fr        #
+#    Updated: 2018/04/09 13:07:49 by allauren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ del_lst.c\
 get_params_term.c\
 signal.c\
 displayutils.c\
+arrow.c\
 tputs.c\
 erroc.c\
 parser.c\

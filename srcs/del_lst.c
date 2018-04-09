@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 00:56:09 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 11:03:28 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 15:46:44 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		deldata(t_data *data)
 	ft_strdel(&data->name);
 }
 
-void		del_lst(t_list *lst)
+void		del_lst(t_node *lst)
 {
 	t_data *lol;
 
@@ -27,7 +27,7 @@ void		del_lst(t_list *lst)
 	ft_memdel((void**)&lst);
 }
 
-void		del_all_lst(t_list *lst)
+void		del_all_lst(t_node *lst)
 {
 	t_data *data;
 
@@ -41,21 +41,21 @@ void		del_all_lst(t_list *lst)
 }
 
 
-void		print_all_lst(t_list *lst)
+void		print_all_lst(t_node *lst)
 {
 	t_data *data;
-	static int i = 0;
 
 	if (lst)
 	{
 			set_caps("ue");
 			set_caps("se");
 		data = lst->content;
-		if (!i++)
+		if (data->cursor)
 		{
 			set_caps("us");
-			set_caps("so");
 		}
+		if (data->select)
+			set_caps("so");
 		ft_putendl_fd(data->name, get_elems(NULL)->fd);
 		if (!((t_data*)(lst->next->content))->start)
 			print_all_lst(lst->next);

@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 12:03:37 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 10:14:06 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 13:51:40 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		divide(int x, int y)
 {
-	return(x / y  +  x % y > 0);
+	return(x / y + 7  +  x % y > 0);
 }
 
 int		isvalidsize(t_env *env)

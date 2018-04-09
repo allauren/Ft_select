@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 09:55:41 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 16:02:14 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int		ft_saveparam(int t)
 	{
 		if (tcgetattr(STDIN_FILENO, &term))
 			return(-1);
+		set_caps("ti");
+		set_caps("vi");
 	}
 	else
 	{
+		set_caps("te");
+		set_caps("ve");
 		if (tcsetattr(STDIN_FILENO, TCSANOW, &term))
 			return (-1);
 	}
@@ -44,23 +48,36 @@ int			initterm(void)
 	return(0);
 }
 
-
+void	handle_arrow(int c)
+{
+	if (c == B_ARROW)
+		get_cursornext(get_elems(NULL));
+	else if (c == T_ARROW)
+		get_cursorprev(get_elems(NULL));
+	else if (c == R_ARROW)
+		get_cursornext(get_elems(NULL));
+	else if (c == L_ARROW)
+		get_cursorprev(get_elems(NULL));
+	else
+		exit(-1);
+}
 
 int     voir_touche()
 {
 	char     buffer[3];
+	int		ret;
 
-	while (1)
-	{
-		read(0, buffer, 3);
-		if (buffer[0] == 27)
-			printf("C'est une fleche !\n");
-		else if (buffer[0] == 4)
-		{
-			printf("Ctlr+d, on quitte !\n");
-			return (0);
-		}
-	}
+	if (!(ret =  read(0, buffer, 4)))
+		return (-1);
+	buffer[ret] = 0;
+	if (buffer[0] == 27 && buffer[1] == 91)
+		handle_arrow(buffer[2]);
+	if (buffer[0] == 32 && buffer[1] == 0)
+		isselect(get_elems(NULL));
+	if (buffer[0] == '\n' && !buffer[1])
+		return(2);
+	if (buffer[0] == 27 && !buffer[1])
+		exiterror();
 	return (0);
 }
 
@@ -70,11 +87,13 @@ void		get_wsize(t_env *env)
 		ft_printf("error in winsize\n");
 	ft_printf("\n avant %d et %d\n", env->mlen, env->size);
 	get_elems(env);
-	if (!isvalidsize(env))
+	//	if (!isvalidsize(env))
+	//	{
+	while (1)
 	{
 		set_caps("cl");
 		print_all_lst(env->lst);
-		voir_touche();
+		if (voir_touche() == 2)
+			break;
 	}
 }
-

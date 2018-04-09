@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 05:41:44 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 10:02:58 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 15:54:29 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			open_tty(t_env *env)
 		ft_saveparam(0);
 		return (-1);
 	}
+	get_elems(env);
 	return (0);
 }
 
