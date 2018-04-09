@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 12:03:37 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 04:04:47 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 10:14:06 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		isvalidsize(t_env *env)
 			||((env->size * divide(env->mlen, env->w.ws_col)) > env->w.ws_row && ft_printf("c est lui")))
 		return(ft_printf ("Je suis trop petit pour afficher ca moi :(\n"));
 	return (0);
-
 }
+
 
 
 

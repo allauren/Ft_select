@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 00:56:09 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/07 09:26:13 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 10:15:32 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		print_all_lst(t_list *lst)
 	if (lst)
 	{
 		data = lst->content;
-		ft_printf("%s\n", data->name);
+		ft_putendl_fd(data->name, get_elems(NULL)->fd);
 		if (!((t_data*)(lst->next->content))->start)
 			print_all_lst(lst->next);
 	}
