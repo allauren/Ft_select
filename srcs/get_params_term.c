@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/07 07:08:58 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 18:05:35 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 18:17:51 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	handle_arrow(int c)
 		get_cursornext(get_elems(NULL));
 	else if (c == L_ARROW)
 		get_cursorprev(get_elems(NULL));
-	else
-		exit(-1);
 }
 
 int     voir_touche()
@@ -70,14 +68,14 @@ int     voir_touche()
 	if (!(ret =  read(0, buffer, 16)))
 		return (-1);
 	buffer[ret] = 0;
-		if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 51 && buffer[3] == 126)
-				|| (buffer[0] == 127 && buffer[1] == 0))
-			deleleme(get_elems(NULL));
+	if ((buffer[0] == 27 && buffer[1] == 91 && buffer[2] == 51 && buffer[3] == 126)
+			|| (buffer[0] == 127 && buffer[1] == 0))
+		deleleme(get_elems(NULL));
 	else if (buffer[0] == 32 && buffer[1] == 0)
 		isselect(get_elems(NULL));
 	else if (buffer[0] == '\n' && !buffer[1])
 		return(2);
-	else if (buffer[0] == 27 && buffer[1] == 91 && !buffer[2])
+	else if (buffer[0] == 27 && buffer[1] == 91)
 		handle_arrow(buffer[2]);
 	else if (buffer[0] == 27 && !buffer[1])
 		exiterror();
@@ -90,16 +88,19 @@ void		get_wsize(t_env *env)
 		ft_printf("error in winsize\n");
 	ft_printf("\n avant %d et %d\n", env->mlen, env->size);
 	get_elems(env);
-	//	if (!isvalidsize(env))
-	//	{
-	while (1)
+	if (!isvalidsize(env))
 	{
-		env = get_elems(NULL);
+		while(1);
+		/*while (1)
+		{
+			env = get_elems(NULL);
 			set_caps("cl");
-		if (!env->lst)
-			return;
+			if (!env->lst)
+				return;
 			print_all_lst(env->lst);
-		if (voir_touche() == 2)
-			break;
+			if (voir_touche() == 2)
+				break;
+		}*/
 	}
+	while(1);
 }

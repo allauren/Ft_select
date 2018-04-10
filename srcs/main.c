@@ -6,7 +6,7 @@
 /*   By: allauren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 22:50:40 by allauren          #+#    #+#             */
-/*   Updated: 2018/04/09 17:48:49 by allauren         ###   ########.fr       */
+/*   Updated: 2018/04/09 18:13:20 by allauren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int main(int argc, char *argv[])
 		return (ft_usage());
 	if (open_tty(&env) == -1)
 		return(-1);
-	if (initterm() == -1)
-		return(ft_usage());
+//	if (initterm() == -1)
+//		return(ft_usage());
 	if (ft_saveparam(1) == -1 || parseargs(&env, argc, argv) == -1)
 		return(ft_print_malloc());
 	signals_init();
